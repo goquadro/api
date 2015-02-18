@@ -223,6 +223,8 @@ func (u *User) Register(candidate User) error {
 	if err != nil {
 		return err
 	}
+	u.URL = candidate.URL
+	u.Name = candidate.Name
 	u.IsRegistered = true
 	u.IsActive = true
 	u.HasPassword = true
