@@ -1,6 +1,6 @@
 #Goquadro Project description
 
-[![Build Status](https://secure.travis-ci.org/goquadro/core.png)](http://travis-ci.org/goquadro/core)
+[![Build Status](https://secure.travis-ci.org/goquadro/api.png)](http://travis-ci.org/goquadro/api)
 
 [Goquadro][goquadro] is a web-based, workflow-aware cloud storage system.
 
