@@ -26,7 +26,7 @@ func init() {
 
 	mongoDBDialInfo := &mgo.DialInfo{
 		Addrs:    []string{gqConfig.mongoDBHosts},
-		Timeout:  60 * time.Second,
+		Timeout:  20 * time.Second,
 		Database: gqConfig.authDatabase,
 		Username: gqConfig.authUserName,
 		Password: gqConfig.authPassword,
