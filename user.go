@@ -163,20 +163,20 @@ func (u *User) SetEmail(address string) error {
 }
 
 // Checks the username against some basic rules.
-func validateUsername(username string) error {
+func validateUsername(username string) (string, error) {
 	pattern := "^[a-z0-9_-]{3,20}$" //Include from 3 to 20 letters or numbers.
 	username = strings.ToLower(username)
 	ok, err := regexp.MatchString(pattern, username)
 	if !ok {
-		return InvalidUsernameError
+		return username, InvalidUsernameError
 	}
-	return err
+	return username, err
 }
 
 // Sets a new username for the user, after performing some basic checking.
 // Uniqueness is checked through the unique index in mongo.
-func (u *User) SetUsername(username string) error {
-	err := validateUsername(username)
+func (u *User) SetUsername(candidateUsername string) error {
+	username, err := validateUsername(candidateUsername)
 	if err != nil {
 		return err
 	}
@@ -211,9 +211,6 @@ func (u *User) SetPassword(password string) error {
 // Registers a new user, provided as an argument, and transfers its properties
 // to the calling User object after sanitization.
 func (u *User) Register(candidate User) error {
-	locSession := getSession()
-	defer locSession.Close()
-	c := locSession.DB(gqConfig.jobDatabase).C(UsersCollection)
 	err := u.SetUsername(candidate.Username)
 	if err != nil {
 		return err
@@ -232,6 +229,9 @@ func (u *User) Register(candidate User) error {
 	u.VerificationCode = RandomUrlencodedString(35)
 	u.LastLogin = time.Now()
 
+	locSession := getSession()
+	defer locSession.Close()
+	c := locSession.DB(gqConfig.jobDatabase).C(UsersCollection)
 	err = c.Insert(u)
 	if err != nil {
 		return err
