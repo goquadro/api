@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	"gopkg.in/mgo.v2/bson"
+)
 
 var testUser User
 
@@ -24,6 +28,9 @@ func TestAddDocument(t *testing.T) {
 }
 
 func TestUserRegister(t *testing.T) {
+	if !bson.IsObjectIdHex(testUser.ID.String()) {
+		t.Errorf("Test user has not been persisted (no bson ID)")
+	}
 	u1 := User{
 		Username: "testuser",
 		Name:     "Big Lebowski",
