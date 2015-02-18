@@ -17,7 +17,7 @@ func TestAddDocument(t *testing.T) {
 		Title: "Goquadro on Github",
 		Tags:  []string{"goquadro", "github", "sourcecode"},
 	}
-	err := testUser.AddDocument(d)
+	err := testUser.AddDocument(&d)
 	if err != nil {
 		t.Error(err)
 	}
@@ -36,8 +36,17 @@ func TestUserRegister(t *testing.T) {
 		URL:      testUser.URL,
 		Email:    testUser.Email,
 	}
-	if u1 != u2 {
-		t.Errorf("Expected %v, got %v", u1, testUser)
+
+	itemProperties := [...][2]string{
+		[2]string{u1.Username, u2.Username},
+		[2]string{u1.Name, u2.Name},
+		[2]string{u1.URL, u2.URL},
+		[2]string{u1.Email, u2.Email},
+	}
+	for _, comp := range itemProperties {
+		if comp[0] != comp[1] {
+			t.Errorf("Expected %v, got %v", comp[0], comp[1])
+		}
 	}
 }
 
