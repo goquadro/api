@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"testing"
 
 	"gopkg.in/mgo.v2/bson"
@@ -58,10 +59,14 @@ func TestUserRegister(t *testing.T) {
 }
 
 func init() {
-	_ = testUser.Register(User{
+	err = testUser.Register(User{
 		Username: "TestUser",
 		Name:     "Big Lebowski",
 		URL:      "http://www.goquadro.com",
 		Email:    "spam@goquadro.com",
 	})
+
+	if err != nil {
+		log.Panic(err)
+	}
 }
