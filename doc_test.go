@@ -60,10 +60,11 @@ func TestUserRegister(t *testing.T) {
 
 func init() {
 	err := testUser.Register(User{
-		Username: "TestUser",
-		Name:     "Big Lebowski",
-		URL:      "http://www.goquadro.com",
-		Email:    "spam@goquadro.com",
+		Username:        "TestUser",
+		Name:            "Big Lebowski",
+		URL:             "http://www.goquadro.com",
+		Email:           "spam@goquadro.com",
+		EnteredPassword: "my very secure passphrase",
 	})
 
 	if err != nil {
