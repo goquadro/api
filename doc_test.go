@@ -59,7 +59,7 @@ func TestUserRegister(t *testing.T) {
 }
 
 func init() {
-	err = testUser.Register(User{
+	err := testUser.Register(User{
 		Username: "TestUser",
 		Name:     "Big Lebowski",
 		URL:      "http://www.goquadro.com",
