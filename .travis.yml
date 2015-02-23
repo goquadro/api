@@ -4,7 +4,7 @@ go:
   - 1.4
 before_script:
   - sleep 5
-  - mongo qdoc --eval 'db.addUser("qdoc1", "test");'
+  - mongo qdoc --eval 'db.addUser("qdoc1", "myverysecuretestpassphrase");'
 script:
   - go build -v
   - go test -v
