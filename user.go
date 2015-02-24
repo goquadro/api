@@ -23,25 +23,25 @@ var UserAlreadyLoggedIn = errors.New("Current user is already logged in.")
 var InvalidUidError = errors.New("No user with that ID.")
 
 type User struct {
-	ID               bson.ObjectId `bson:"_id,omitempty"    json:"userID"`
-	Username         string        `bson:"username"         json:"username"`
-	Name             string        `bson:"name"             json:"name"`
-	Location         string        `bson:"location"         json:"location"`
-	URL              string        `bson:"url"              json:"url"`
-	Email            string        `bson:"email"            json:"email"`
-	EmailVerified    bool          `bson:"email_verified"   json:"-"`
-	IsRegistered     bool          `bson:"is_registered"    json:"-"`
-	HasPassword      bool          `bson:"has_password"     json:"-"`
-	IsActive         bool          `bson:"is_active"        json:"-"`
-	Password         []byte        `bson:"password"         json:"-"`
-	Salt             []byte        `bson:"salt"             json:"-"`
-	GoogleOAuthSub   string        `bson:"google_oauth_sub" json:"-"`
-	LastLogin        time.Time     `bson:"last_login"       json:"-"`
-	EnteredPassword  string        `bson:"-"                json:"password"`
-	CodeUsed         bson.ObjectId `bson:"signup_code"      json:"-"`
-	VerificationCode string        `bson:"confirm_code"     json:"-"`
-	Role             int           `bson:"role"             json:"-"`
-	FailedLogins     int           `bson:"fails"            json:"-"`
+	ID               bson.ObjectId `bson:"_id,omitempty"         json:"userID"`
+	Username         string        `bson:"username"              json:"username"`
+	Name             string        `bson:"name"                  json:"name"`
+	Location         string        `bson:"location"              json:"location"`
+	URL              string        `bson:"url"                   json:"url"`
+	Email            string        `bson:"email"                 json:"email"`
+	EmailVerified    bool          `bson:"email_verified"        json:"-"`
+	IsRegistered     bool          `bson:"is_registered"         json:"-"`
+	HasPassword      bool          `bson:"has_password"          json:"-"`
+	IsActive         bool          `bson:"is_active"             json:"-"`
+	Password         []byte        `bson:"password"              json:"-"`
+	Salt             []byte        `bson:"salt"                  json:"-"`
+	GoogleOAuthSub   string        `bson:"google_oauth_sub"      json:"-"`
+	LastLogin        time.Time     `bson:"last_login"            json:"-"`
+	EnteredPassword  string        `bson:"-"                     json:"password"`
+	CodeUsed         bson.ObjectId `bson:"signup_code,omitempty" json:"-"`
+	VerificationCode string        `bson:"confirm_code"          json:"-"`
+	Role             int           `bson:"role"                  json:"-"`
+	FailedLogins     int           `bson:"fails"                 json:"-"`
 	//ProfileImageUrl         string `json:"profile_image_url"`
 	//ProfileImageUrlHttps    string `json:"profile_image_url_https"`
 }
